@@ -1,7 +1,7 @@
 import React from "react";
 import { getDateFormatted } from "../tools/helpers";
 
-const Card = ({ data }) => {
+const Card = ({ data, isLoading }) => {
   const { temperature, wind, description, forecast } = data;
   const { dayStr, dayNbr, month } = getDateFormatted();
   console.log(getDateFormatted());
@@ -11,7 +11,7 @@ const Card = ({ data }) => {
   console.log(getDateFormatted(new Date(2021, 10, 24)));
 
   return (
-    <div>
+    <>
       <p>{dayStr}</p>
       <p>{`${dayNbr}  ${month}`}</p>
       <p>{temperature}</p>
@@ -28,7 +28,7 @@ const Card = ({ data }) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
