@@ -1,12 +1,13 @@
 import "./App.css";
 import Weather from "./components/Weather";
 import { useState } from "react";
-
+import "./App.css";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [place, setPlace] = useState("");
   return (
-    <div className="App">
+    <div className="app">
+      <h1>WEATHER APP</h1>
       <input
         type="text"
         value={inputValue}
@@ -15,8 +16,7 @@ function App() {
       />
       <button onClick={() => setPlace(inputValue)}>search</button>
 
-      <h1>Main Component</h1>
-      <Weather place={place} />
+      <Weather className="main" place={place} />
     </div>
   );
 }

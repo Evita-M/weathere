@@ -8,7 +8,7 @@ const Weather = ({ place }) => {
     `https://goweather.herokuapp.com/weather/${place}`
   );
 
-  return <>{isLoading ? <Spinner /> : <Card data={data} />}</>;
+  return <>{isLoading ? <Spinner /> : <Card data={data} place={place} />}</>;
 };
 
 export default Weather;
