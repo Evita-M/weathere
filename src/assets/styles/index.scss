@@ -1,0 +1,150 @@
+* {
+  font-family: "Dosis", sans-serif;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  background-image: linear-gradient(
+      217deg,
+      rgba(0, 7, 111, 0.9),
+      rgba(68, 0, 139, 0.9) 75%
+    ),
+    linear-gradient(
+      15deg,
+      rgba(159, 69, 176, 0.85),
+      rgba(229, 78, 208, 0.9) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(229, 78, 208, 0.9),
+      rgba(255, 228, 242, 0.7) 80%
+    );
+  height: 100vh;
+}
+.container {
+  max-width: 1200px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.app {
+  padding: 150px 0;
+  position: relative;
+  &__title {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 40px;
+    margin-bottom: 50px;
+  }
+  &__intro {
+    margin-bottom: 50px;
+    span {
+      color: lightgreen;
+    }
+    strong {
+      font-size: 25px;
+    }
+  }
+  &__search {
+    color: black;
+    font-size: 18px;
+    line-height: 32/18;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 0 -15px -15px;
+    input {
+      padding: 8px 16px;
+      font-size: 18px;
+      outline: none;
+      border-radius: 5px;
+      border: none;
+      min-width: 250px;
+    }
+    button {
+      padding: 8px 25px;
+      outline: none;
+      background-color: rgb(229, 78, 208);
+      font-weight: bold;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: lighten(rgb(229, 78, 208), 10%);
+      }
+    }
+    & > p {
+      margin: 0 0 15px 15px;
+    }
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main {
+  padding-top: 200px;
+}
+
+.cards__list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0 0 -40px -40px;
+}
+.cards__item {
+  margin: 0 0 40px 40px;
+  flex: 0 0 auto;
+}
+.card {
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+  padding: 50px;
+  margin: 20px auto 0;
+}
+
+svg {
+  display: block;
+  height: 15vw;
+  //   margin: auto;
+  //   margin-top: 30vh;
+  color: #d14009;
+  transition: 1s ease-out;
+  animation: rotation 8s infinite linear;
+}
+
+.fa-secondary {
+  fill: #fc9601;
+  opacity: 0.8;
+  transition: fill 2s ease-out;
+}
+
+svg:hover {
+  color: #ffcc33;
+}
+.fa-secondary:hover {
+  fill: #ffe484;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

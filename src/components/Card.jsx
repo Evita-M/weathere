@@ -16,8 +16,6 @@ const Card = ({ data, place }) => {
         ""
       ) : (
         <div>
-          <p>{dayStr}</p>
-          <p>{`${dayNbr}  ${month}`}</p>
           <article className="card">
             <h2>{place}</h2>
             <p>Temprature: {temperature}</p>
