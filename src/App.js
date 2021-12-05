@@ -3,16 +3,44 @@ import Weather from "./components/Weather";
 import { useState } from "react";
 import "./assets/styles/index.scss";
 import { getDateFormatted } from "./tools/helpers";
-import { useGet } from "./hooks/useGet";
+// import { useGet } from "./hooks/useGet";
 import Spinner from "./components/Spinner";
 function App() {
   const [inputValue, setInputValue] = useState("");
+  const [titlePlace, setTitlePlace] = useState("");
   const [place, setPlace] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [data, setData] = useState(null);
   const { dayStr, dayNbr, month } = getDateFormatted();
 
-  const { data, isLoading } = useGet(
-    `https://goweather.herokuapp.com/weather/${place}`
-  );
+  const handleOnInputChange = (e) => {
+    setInputValue(e.target.value);
+    setTitlePlace(e.target.value);
+  };
+
+  const handleOnButtonClick = (e) => {
+    e.preventDefault();
+    fetchData(inputValue);
+  };
+
+  const fetchData = (place) => {
+    setIsLoading(true);
+    fetch(`https://goweather.herokuapp.com/weather/${place}`)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json);
+        setPlace(place);
+      })
+      .catch((error) => {
+        console.log(error);
+        setHasError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setInputValue("");
+      });
+  };
 
   return (
     <div className="app">
@@ -21,7 +49,7 @@ function App() {
         <div className="app__intro">
           Today is <span> {`${dayStr} ${dayNbr} of ${month}`}</span>
           <p>
-            What weather is in <strong>{`${inputValue}`}</strong>?
+            What weather is in <strong>{`${titlePlace}`}</strong>?
           </p>
         </div>
 
@@ -30,28 +58,26 @@ function App() {
             <input
               type="text"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleOnInputChange}
               placeholder="ex. Brno"
             />
           </p>
           <p>
-            <button
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                setPlace(inputValue);
-              }}
-            >
+            <button type="submit" onClick={handleOnButtonClick}>
               search
             </button>
           </p>
         </form>
-        {/* <Weather className="main" place={place} /> */}
         <>
           {isLoading ? (
             <Spinner />
           ) : (
-            <Weather className="main" data={data} place={place} />
+            <Weather
+              className="main"
+              data={data}
+              place={place}
+              hasError={hasError}
+            />
           )}
         </>
       </div>

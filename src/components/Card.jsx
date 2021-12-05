@@ -12,33 +12,35 @@ const Card = ({ data, place }) => {
 
   return (
     <>
-      {place === "" ? (
-        ""
-      ) : (
-        <div>
-          <article className="card">
-            <h2>{place}</h2>
-            <p>Temprature: {temperature}</p>
-            <p>Wind: {wind}</p>
-            <p>Description: {description}</p>
-          </article>
-          <div>
-            <ul className="cards__list">
-              {forecast.map((item, index) => {
-                return (
-                  <li key={index} className="cards__item">
-                    <article className="card">
-                      <p>{item.day}</p>
-                      <p>{item.temperature}</p>
-                      <p>{item.wind}</p>
-                    </article>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+      <article className="card">
+        <div className="card__main">
+          <h2 className="card__title">{place}</h2>
+          <div className="card__img"></div>
+          <ul className="card__forecast">
+            <li className="card__forecast-item">
+              <span>Temperature</span> {temperature}
+            </li>
+            <li className="card__forecast-item">
+              <span>Wind</span>
+              {wind}
+            </li>
+            <li className="card__forecast-item">
+              <span>Description</span> {description}
+            </li>
+          </ul>
         </div>
-      )}
+        <div className="card__list">
+          {forecast.map((item, index) => {
+            return (
+              <div key={index} className="card__item">
+                <p>{item.day}</p>
+                <p>{item.temperature}</p>
+                <p>{item.wind}</p>
+              </div>
+            );
+          })}
+        </div>
+      </article>
     </>
   );
 };

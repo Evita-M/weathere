@@ -1,31 +1,39 @@
-* {
-  font-family: "Dosis", sans-serif;
-  letter-spacing: 1px;
+$fontFamily: "Dosis", sans-serif;
+$colorRed: orange;
+$colorGray: #f1faee;
+$colorBlueLight: #a8dadc;
+$colorBlueMedium: #457b9d;
+$colorBlueDark: #1d3557;
+$fontSize: 20px;
+$colorWhite: #ffffff;
+$colorGreyLight: rgb(255, 228, 242);
+$colorPink: rgb(229, 78, 208);
+$colorViolet: rgb(159, 69, 176);
+$gradient: linear-gradient(
+    rgba($colorBlueDark, 0.9),
+    rgba($colorBlueMedium, 0.9) 80%
+  ),
+  linear-gradient(rgba($colorBlueMedium, 0.9), rgba($colorBlueMedium, 0.5) 50%),
+  linear-gradient(
+    90deg,
+    rgba($colorBlueMedium, 0.3),
+    rgba($colorGray, 0.9) 100%
+  );
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: $fontFamily;
 }
 
 body {
-  font-family: "Dosis", sans-serif;
+  letter-spacing: 1px;
   text-align: center;
-  font-size: 20px;
-  color: white;
-  background-image: linear-gradient(
-      217deg,
-      rgba(0, 7, 111, 0.9),
-      rgba(68, 0, 139, 0.9) 75%
-    ),
-    linear-gradient(
-      15deg,
-      rgba(159, 69, 176, 0.85),
-      rgba(229, 78, 208, 0.9) 50%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(229, 78, 208, 0.9),
-      rgba(255, 228, 242, 0.7) 80%
-    );
-  height: 100vh;
+  font-size: $fontSize;
+  color: $colorWhite;
 }
 .container {
   max-width: 1200px;
@@ -34,18 +42,21 @@ body {
 }
 
 .app {
-  padding: 150px 0;
+  padding: 150px 0 20px;
+  background: $gradient;
+  height: 100vh;
   position: relative;
   &__title {
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 40px;
+    font-size: 45px;
     margin-bottom: 50px;
   }
   &__intro {
     margin-bottom: 50px;
     span {
-      color: lightgreen;
+      color: $colorRed;
+      font-weight: 600;
     }
     strong {
       font-size: 25px;
@@ -59,6 +70,10 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 0 -15px -15px;
+    padding-bottom: 30px;
+    & > p {
+      margin: 0 0 15px 15px;
+    }
     input {
       padding: 8px 16px;
       font-size: 18px;
@@ -66,11 +81,18 @@ body {
       border-radius: 5px;
       border: none;
       min-width: 250px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border: 3px solid transparent;
+      &:focus {
+        border-color: orange;
+      }
     }
     button {
-      padding: 8px 25px;
+      padding: 10px 25px 12px 25px;
       outline: none;
-      background-color: rgb(229, 78, 208);
+      color: black;
+      background-color: $colorRed;
       font-weight: bold;
       letter-spacing: 1px;
       border: none;
@@ -79,11 +101,8 @@ body {
       font-size: 18px;
       transition: background-color 0.3s;
       &:hover {
-        background-color: lighten(rgb(229, 78, 208), 10%);
+        background-color: lighten($colorRed, 10%);
       }
-    }
-    & > p {
-      margin: 0 0 15px 15px;
     }
   }
 }
@@ -99,22 +118,50 @@ body {
   padding-top: 200px;
 }
 
-.cards__list {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0 0 -40px -40px;
-}
-.cards__item {
-  margin: 0 0 40px 40px;
-  flex: 0 0 auto;
-}
 .card {
-  background-color: white;
-  border-radius: 5px;
+  background-color: $colorPink;
   color: black;
-  padding: 50px;
-  margin: 20px auto 0;
+  padding: 15px;
+  border-radius: 5px;
+  &__main {
+    background-color: $colorWhite;
+    padding: 40px 15px;
+    border-radius: 5px;
+  }
+  &__title {
+    font-size: 40px;
+    margin-bottom: 25px;
+  }
+  &__img {
+    margin-bottom: 25px;
+  }
+  &__forecast {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 -15px -15px;
+    list-style: none;
+    &-item {
+      margin: 0 0 15px 15px;
+      span {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 15px;
+  }
+  &__item {
+    background-color: pink;
+    padding: 15px;
+    border-radius: 5px;
+  }
 }
 
 svg {

@@ -1,10 +1,14 @@
 import React from "react";
 import Card from "./Card";
 
-const Weather = ({ data, place }) => {
+const Weather = ({ data, place, hasError }) => {
   return (
     <>
-      <Card data={data} place={place} />
+      {(data && data.temperature === "") || hasError ? (
+        <p>Something went wrong!</p>
+      ) : (
+        data && <Card data={data} place={place} />
+      )}
     </>
   );
 };
