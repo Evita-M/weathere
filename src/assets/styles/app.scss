@@ -1,0 +1,26 @@
+@import "variables.scss";
+@import "mixins.scss";
+@import "index.scss";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $fontFamily;
+}
+
+body {
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: $fontSize;
+  font-weight: 500;
+  color: $colorWhite;
+  background: $gradient;
+}
+
+button {
+  outline: none;
+  border: none;
+}

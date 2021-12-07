@@ -1,3 +1,9 @@
+Date.prototype.addDays = function (days) {
+  const date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+
 export function getDateFormatted(dateParam = new Date(), daysOffset = 0) {
   let date;
 
@@ -10,7 +16,7 @@ export function getDateFormatted(dateParam = new Date(), daysOffset = 0) {
   let formattedDate = null;
   let resultDate = new Date(date);
 
-  resultDate.setDate(resultDate.getDate() + daysOffset);
+  resultDate = date.addDays(Number(daysOffset));
 
   let days = [
     "Sunday",

@@ -1,7 +1,7 @@
 import "./App.css";
 import Weather from "./components/Weather";
 import { useState } from "react";
-import "./assets/styles/index.scss";
+// import "./assets/styles/index.scss";
 import { getDateFormatted } from "./tools/helpers";
 // import { useGet } from "./hooks/useGet";
 import Spinner from "./components/Spinner";

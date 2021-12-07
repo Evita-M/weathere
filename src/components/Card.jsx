@@ -3,7 +3,7 @@ import { getDateFormatted } from "../tools/helpers";
 
 const Card = ({ data, place }) => {
   const { temperature, wind, description, forecast } = data;
-  const { dayStr, dayNbr, month } = getDateFormatted();
+  // const { dayStr, dayNbr, month } = getDateFormatted();
   //   console.log(getDateFormatted());
   //   console.log(getDateFormatted(new Date(), 3));
   //   console.log(getDateFormatted(null, 3));
@@ -29,11 +29,15 @@ const Card = ({ data, place }) => {
             </li>
           </ul>
         </div>
+
         <div className="card__list">
           {forecast.map((item, index) => {
+            let df = getDateFormatted(new Date(), item.day);
+
             return (
               <div key={index} className="card__item">
-                <p>{item.day}</p>
+                <p>{df.dayStr}</p>
+                <p>{`${df.dayNbr} of ${df.month}`}</p>
                 <p>{item.temperature}</p>
                 <p>{item.wind}</p>
               </div>
