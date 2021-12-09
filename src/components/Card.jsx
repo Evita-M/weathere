@@ -1,5 +1,6 @@
 import React from "react";
-import { getDateFormatted } from "../tools/helpers";
+import { getDateFormatted, makeFirstCapital } from "../tools/helpers";
+import { Air, Thermostat } from "@mui/icons-material";
 
 const Card = ({ data, place }) => {
   const { temperature, wind, description, forecast } = data;
@@ -14,18 +15,20 @@ const Card = ({ data, place }) => {
     <>
       <article className="card">
         <div className="card__main">
-          <h2 className="card__title">{place}</h2>
-          <div className="card__img"></div>
+          <h2 className="card__title">{makeFirstCapital(place)}</h2>
+          <p className="card__subtitle">{description}</p>
           <ul className="card__forecast">
-            <li className="card__forecast-item">
-              <span>Temperature</span> {temperature}
+            <li className="card__info card__info--lg">
+              <span className="card__forecast-icon">
+                <Thermostat sx={{ fontSize: 35 }} />
+              </span>
+              <span>{temperature}</span>
             </li>
-            <li className="card__forecast-item">
-              <span>Wind</span>
-              {wind}
-            </li>
-            <li className="card__forecast-item">
-              <span>Description</span> {description}
+            <li className="card__info card__info--lg">
+              <span className="card__forecast-icon">
+                <Air sx={{ fontSize: 35 }} />
+              </span>
+              <span>{wind}</span>
             </li>
           </ul>
         </div>
@@ -36,10 +39,24 @@ const Card = ({ data, place }) => {
 
             return (
               <div key={index} className="card__item">
-                <p>{df.dayStr}</p>
-                <p>{`${df.dayNbr} of ${df.month}`}</p>
-                <p>{item.temperature}</p>
-                <p>{item.wind}</p>
+                <div className="card__item-header">
+                  <p className="card__item-day">{df.dayStr}</p>
+                  <p>{`${df.dayNbr} of ${df.month}`}</p>
+                </div>
+                <div className="card__item-stats">
+                  <div className="card__info">
+                    <span className="card__item-icon">
+                      <Thermostat sx={{ fontSize: 30 }} />
+                    </span>
+                    <span>{item.temperature}</span>
+                  </div>
+                  <div className="card__info">
+                    <span className="card__item-icon">
+                      <Air sx={{ fontSize: 30 }} />
+                    </span>
+                    <span>{item.wind}</span>
+                  </div>
+                </div>
               </div>
             );
           })}

@@ -53,3 +53,11 @@ export function getDateFormatted(dateParam = new Date(), daysOffset = 0) {
 
   return formattedDate;
 }
+
+export const makeFirstCapital = (text) => {
+  let newText = `${text.charAt(0).toUpperCase()}${
+    text.length > 1 ? text.slice(1) : ""
+  }`;
+
+  return newText;
+};

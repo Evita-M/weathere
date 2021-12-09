@@ -1,24 +1,22 @@
 .container {
-  max-width: 1200px;
   padding: 30px;
   margin: 0 auto;
-  position: relative;
-  @extend .glass-effect;
+  height: 100vh;
+  max-width: 900px;
 }
 
 .app {
-  padding: 140px 20px 20px;
-  height: 100vh;
+  padding: 60px 15px 20px;
+  @include glass-effect();
   position: relative;
-
   &__title {
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 45px;
-    margin-bottom: 50px;
+    font-size: 65px;
+    margin-bottom: 30px;
   }
   &__intro {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     span {
       color: $colorViolet;
       font-weight: 600;
@@ -28,7 +26,7 @@
     }
   }
   &__search {
-    color: black;
+    color: $colorBlack;
     font-size: 18px;
     display: inline-flex;
     border-radius: 5px;
@@ -52,7 +50,6 @@
     }
     button {
       padding: 10px 25px 12px 25px;
-      outline: none;
       color: white;
       background-color: $colorViolet;
       font-weight: bold;
@@ -66,36 +63,33 @@
       }
     }
   }
+  &__main {
+    padding-top: 50px;
+  }
 }
 
 .spinner {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
   height: 120px;
 }
 
-.main {
-  padding-top: 200px;
-}
-
 .card {
-  @extend .glass-effect;
-  margin-top: 50px;
+  @include glass-effect($opacity: 0.2);
 
-  color: black;
-  padding: 15px;
-  border-radius: 15px;
+  color: $colorWhite;
+  padding: 20px;
+  // border-radius: 15px;
 
   &__main {
-    @extend .glass-effect;
-    padding: 40px 15px;
-    border-radius: 5px;
+    // @include glass-effect();
+    padding-bottom: 40px;
+    font-size: 25px;
   }
   &__title {
-    font-size: 40px;
-    margin-bottom: 25px;
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+  &__subtitle {
+    margin-bottom: 50px;
   }
   &__img {
     margin-bottom: 25px;
@@ -104,27 +98,60 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 0 -15px -15px;
+    margin: 0 0 -20px -70px;
     list-style: none;
-    &-item {
-      margin: 0 0 15px 15px;
-      span {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 5px;
-      }
+    li {
+      padding: 0 0 20px 70px;
+      flex: 0 0 auto;
     }
   }
-
   &__list {
     display: grid;
-    gap: 15px;
+    gap: 20px;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 15px;
   }
   &__item {
-    @extend .glass-effect;
-    padding: 15px;
-    border-radius: 5px;
+    @include glass-effect($opacity: 0.1);
+    padding: 20px 15px;
+    font-size: 20px;
+    transition: transform 0.3s;
+    p {
+      margin-bottom: 10px;
+    }
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &__item-header {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  &__item-day {
+    font-weight: 600;
+    font-size: 23px;
+  }
+  &__item-stats {
+    max-width: max-content;
+    margin: 0 auto;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 25px;
+    svg {
+      position: relative;
+      top: 1px;
+    }
+    span {
+      padding-left: 20px;
+    }
+    &--lg {
+      font-size: 35px;
+      line-height: 35px;
+    }
   }
 }

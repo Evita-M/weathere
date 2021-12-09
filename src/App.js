@@ -2,7 +2,7 @@ import "./App.css";
 import Weather from "./components/Weather";
 import { useState } from "react";
 // import "./assets/styles/index.scss";
-import { getDateFormatted } from "./tools/helpers";
+import { getDateFormatted, makeFirstCapital } from "./tools/helpers";
 // import { useGet } from "./hooks/useGet";
 import Spinner from "./components/Spinner";
 function App() {
@@ -43,13 +43,14 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <div className="container">
+    <div className="container">
+      <div className="app">
         <h1 className="app__title">Weather App</h1>
         <div className="app__intro">
           Today is <span> {`${dayStr} ${dayNbr} of ${month}`}</span>
           <p>
-            What weather is in <strong>{`${titlePlace}`}</strong>?
+            What's the weather in{" "}
+            <strong>{`${makeFirstCapital(titlePlace)}`}</strong>?
           </p>
         </div>
 
@@ -57,7 +58,7 @@ function App() {
           <p>
             <input
               type="text"
-              value={inputValue}
+              value={makeFirstCapital(inputValue)}
               onChange={handleOnInputChange}
               placeholder="ex. Brno"
             />
@@ -68,7 +69,7 @@ function App() {
             </button>
           </p>
         </form>
-        <>
+        <div className="app__main">
           {isLoading ? (
             <Spinner />
           ) : (
@@ -79,7 +80,7 @@ function App() {
               hasError={hasError}
             />
           )}
-        </>
+        </div>
       </div>
     </div>
   );

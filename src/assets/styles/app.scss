@@ -11,13 +11,21 @@
   font-family: $fontFamily;
 }
 
+html {
+  background: $gradient;
+}
+
+#root {
+  background: $gradient;
+}
 body {
   letter-spacing: 1px;
   text-align: center;
   font-size: $fontSize;
   font-weight: 500;
   color: $colorWhite;
-  background: $gradient;
+
+  // background: $gradient;
 }
 
 button {
