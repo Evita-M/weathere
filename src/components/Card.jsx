@@ -17,20 +17,22 @@ const Card = ({ data, place }) => {
         <div className="card__main">
           <h2 className="card__title">{makeFirstCapital(place)}</h2>
           <p className="card__subtitle">{description}</p>
-          <ul className="card__forecast">
-            <li className="card__info card__info--lg">
-              <span className="card__forecast-icon">
-                <Thermostat sx={{ fontSize: 35 }} />
-              </span>
-              <span>{temperature}</span>
-            </li>
-            <li className="card__info card__info--lg">
-              <span className="card__forecast-icon">
-                <Air sx={{ fontSize: 35 }} />
-              </span>
-              <span>{wind}</span>
-            </li>
-          </ul>
+          <div className="card__wrapper">
+            <ul className="card__forecast card__forecast--lg">
+              <li className="card__info card__info--lg">
+                <span className="card__forecast-icon">
+                  <Thermostat sx={{ fontSize: 22 }} />
+                </span>
+                <span>{temperature}</span>
+              </li>
+              <li className="card__info">
+                <span className="card__forecast-icon">
+                  <Air sx={{ fontSize: 22 }} />
+                </span>
+                <span>{wind}</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="card__list">
@@ -40,21 +42,19 @@ const Card = ({ data, place }) => {
             return (
               <div key={index} className="card__item">
                 <div className="card__item-header">
-                  <p className="card__item-day">
-                    <strong>{df.dayStr}</strong>
-                  </p>
+                  <p className="card__item-day">{df.dayStr}</p>
                   <p>{`${df.dayNbr} of ${df.month}`}</p>
                 </div>
-                <div className="card__item-stats">
+                <div className="card__forecast">
                   <p className="card__info">
                     <span className="card__icon">
-                      <Thermostat sx={{ fontSize: 30 }} />
+                      <Thermostat sx={{ fontSize: 18 }} />
                     </span>
                     <span>{item.temperature}</span>
                   </p>
                   <p className="card__info">
                     <span className="card__icon">
-                      <Air sx={{ fontSize: 30 }} />
+                      <Air sx={{ fontSize: 18 }} />
                     </span>
                     <span>{item.wind}</span>
                   </p>

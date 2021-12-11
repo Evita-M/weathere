@@ -70,7 +70,7 @@ function App() {
       {/* <Animator /> */}
       <div className="container">
         <div className="app">
-          <h1 className="app__title">Weather App</h1>
+          <h1 className="app__title">Weathere</h1>
           <div className="app__intro">
             Today is <strong> {`${dayStr} ${dayNbr} of ${month}`}</strong>
             <p>
