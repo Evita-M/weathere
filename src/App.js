@@ -1,17 +1,38 @@
-import "./App.css";
 import Weather from "./components/Weather";
-import { useState } from "react";
-// import "./assets/styles/index.scss";
-import { getDateFormatted, makeFirstCapital } from "./tools/helpers";
-// import { useGet } from "./hooks/useGet";
 import Spinner from "./components/Spinner";
+import Animator from "./components/Animator";
+import { useState } from "react";
+import { getDateFormatted, makeFirstCapital } from "./tools/helpers";
+import "./App.css";
+
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [titlePlace, setTitlePlace] = useState("");
-  const [place, setPlace] = useState("");
+  const [place, setPlace] = useState("Test");
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({
+    temperature: "1 C",
+    wind: "15 km/h",
+    description: "The owner of API is noob",
+    forecast: [
+      {
+        day: 1,
+        temperature: "1 C",
+        wind: "15 km/h",
+      },
+      {
+        day: 1,
+        temperature: "1 C",
+        wind: "15 km/h",
+      },
+      {
+        day: 1,
+        temperature: "1 C",
+        wind: "15 km/h",
+      },
+    ],
+  });
   const { dayStr, dayNbr, month } = getDateFormatted();
 
   const handleOnInputChange = (e) => {
@@ -26,7 +47,9 @@ function App() {
 
   const fetchData = (place) => {
     setIsLoading(true);
-    fetch(`https://goweather.herokuapp.com/weather/${place}`)
+    fetch(`https://goweather.herokuapp.com/weather/${place}`, {
+      mode: "no-cors",
+    })
       .then((response) => response.json())
       .then((json) => {
         setData(json);
@@ -43,46 +66,49 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="app">
-        <h1 className="app__title">Weather App</h1>
-        <div className="app__intro">
-          Today is <span> {`${dayStr} ${dayNbr} of ${month}`}</span>
-          <p>
-            What's the weather in{" "}
-            <strong>{`${makeFirstCapital(titlePlace)}`}</strong>?
-          </p>
-        </div>
+    <>
+      {/* <Animator /> */}
+      <div className="container">
+        <div className="app">
+          <h1 className="app__title">Weather App</h1>
+          <div className="app__intro">
+            Today is <strong> {`${dayStr} ${dayNbr} of ${month}`}</strong>
+            <p>
+              What's the weather in{" "}
+              <strong>{`${makeFirstCapital(titlePlace)}`}</strong>?
+            </p>
+          </div>
 
-        <form className="app__search">
-          <p>
-            <input
-              type="text"
-              value={makeFirstCapital(inputValue)}
-              onChange={handleOnInputChange}
-              placeholder="ex. Brno"
-            />
-          </p>
-          <p>
-            <button type="submit" onClick={handleOnButtonClick}>
-              search
-            </button>
-          </p>
-        </form>
-        <div className="app__main">
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <Weather
-              className="main"
-              data={data}
-              place={place}
-              hasError={hasError}
-            />
-          )}
+          <form className="app__search">
+            <p>
+              <input
+                type="text"
+                value={makeFirstCapital(inputValue)}
+                onChange={handleOnInputChange}
+                placeholder="ex. Brno"
+              />
+            </p>
+            <p>
+              <button type="submit" onClick={handleOnButtonClick}>
+                search
+              </button>
+            </p>
+          </form>
+          <div className="app__main">
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Weather
+                className="main"
+                data={data}
+                place={place}
+                hasError={hasError}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

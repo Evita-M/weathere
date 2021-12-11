@@ -40,22 +40,24 @@ const Card = ({ data, place }) => {
             return (
               <div key={index} className="card__item">
                 <div className="card__item-header">
-                  <p className="card__item-day">{df.dayStr}</p>
+                  <p className="card__item-day">
+                    <strong>{df.dayStr}</strong>
+                  </p>
                   <p>{`${df.dayNbr} of ${df.month}`}</p>
                 </div>
                 <div className="card__item-stats">
-                  <div className="card__info">
-                    <span className="card__item-icon">
+                  <p className="card__info">
+                    <span className="card__icon">
                       <Thermostat sx={{ fontSize: 30 }} />
                     </span>
                     <span>{item.temperature}</span>
-                  </div>
-                  <div className="card__info">
-                    <span className="card__item-icon">
+                  </p>
+                  <p className="card__info">
+                    <span className="card__icon">
                       <Air sx={{ fontSize: 30 }} />
                     </span>
                     <span>{item.wind}</span>
-                  </div>
+                  </p>
                 </div>
               </div>
             );
