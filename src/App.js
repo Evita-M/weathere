@@ -26,29 +26,13 @@ function App() {
   };
 
   const fetchData = (place) => {
-    const date = `${new Date().getFullYear()}-${
-      new Date().getMonth() + 1
-    }-${new Date().getDate()}`;
-
-    const apiKey = process.env.REACT_APP_API_KEY;
-
-    const optionsCurrent = {
-      method: "GET",
-      url: "https://weatherapi-com.p.rapidapi.com/current.json",
-      params: { q: place },
-      headers: {
-        "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
-        "x-rapidapi-key": apiKey,
-      },
-    };
-
     const optionsForecast = {
       method: "GET",
       url: "https://weatherapi-com.p.rapidapi.com/forecast.json",
       params: { q: place, days: "3" },
       headers: {
         "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
-        "x-rapidapi-key": apiKey,
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
       },
     };
 
@@ -57,7 +41,7 @@ function App() {
       .request(optionsForecast)
       .then((response) => {
         let data = response.data;
-
+        console.log(data);
         const currentDate = data.forecast.forecastday[0].date;
         const sunriseData = data.forecast.forecastday[0].astro.sunrise;
         const sunsetData = data.forecast.forecastday[0].astro.sunset;
@@ -72,6 +56,7 @@ function App() {
           temperature: data.current.temp_c,
           wind: data.current.wind_kph,
           windDirection: data.current.wind_dir,
+          windDirectionDegree: data.current.wind_degree,
           humidity: data.current.humidity,
           pressure: data.current.pressure_mb,
           feelsLike: data.current.feelslike_c,

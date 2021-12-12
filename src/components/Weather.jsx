@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Forecast from "./Forecast";
 
 const Weather = ({ data, place, hasError }) => {
   return (
@@ -9,7 +9,7 @@ const Weather = ({ data, place, hasError }) => {
           Something went wrong!<br></br> Try it again.
         </p>
       ) : (
-        data && <Card data={data} place={place} />
+        data && <Forecast data={data} place={place} />
       )}
     </>
   );
