@@ -1,5 +1,6 @@
 import Weather from "./components/Weather";
 import Spinner from "./components/Spinner";
+import axios from "axios";
 import Animator from "./components/Animator";
 import { useState } from "react";
 import { getDateFormatted, makeFirstCapital } from "./tools/helpers";
@@ -11,28 +12,7 @@ function App() {
   const [place, setPlace] = useState("Test");
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [data, setData] = useState({
-    temperature: "1 C",
-    wind: "15 km/h",
-    description: "The owner of API is noob",
-    forecast: [
-      {
-        day: 1,
-        temperature: "1 C",
-        wind: "15 km/h",
-      },
-      {
-        day: 1,
-        temperature: "1 C",
-        wind: "15 km/h",
-      },
-      {
-        day: 1,
-        temperature: "1 C",
-        wind: "15 km/h",
-      },
-    ],
-  });
+  const [data, setData] = useState(null);
   const { dayStr, dayNbr, month } = getDateFormatted();
 
   const handleOnInputChange = (e) => {
@@ -46,13 +26,77 @@ function App() {
   };
 
   const fetchData = (place) => {
+    const date = `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getDate()}`;
+
+    const apiKey = process.env.REACT_APP_API_KEY;
+
+    const optionsCurrent = {
+      method: "GET",
+      url: "https://weatherapi-com.p.rapidapi.com/current.json",
+      params: { q: place },
+      headers: {
+        "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+        "x-rapidapi-key": apiKey,
+      },
+    };
+
+    const optionsForecast = {
+      method: "GET",
+      url: "https://weatherapi-com.p.rapidapi.com/forecast.json",
+      params: { q: place, days: "3" },
+      headers: {
+        "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+        "x-rapidapi-key": apiKey,
+      },
+    };
+
     setIsLoading(true);
-    fetch(`https://goweather.herokuapp.com/weather/${place}`, {
-      mode: "no-cors",
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json);
+    axios
+      .request(optionsForecast)
+      .then((response) => {
+        let data = response.data;
+
+        const currentDate = data.forecast.forecastday[0].date;
+        const sunriseData = data.forecast.forecastday[0].astro.sunrise;
+        const sunsetData = data.forecast.forecastday[0].astro.sunset;
+        const forecast = data.forecast.forecastday.slice(1);
+
+        data = {
+          date: currentDate,
+          location: data.location.name,
+          country: data.location.country,
+          icon: data.current.condition.icon,
+          description: data.current.condition.text,
+          temperature: data.current.temp_c,
+          wind: data.current.wind_kph,
+          windDirection: data.current.wind_dir,
+          humidity: data.current.humidity,
+          pressure: data.current.pressure_mb,
+          feelsLike: data.current.feelslike_c,
+          localTime: data.location.localtime,
+          sunrise: sunriseData,
+          sunset: sunsetData,
+          forecast: forecast.map((item) => {
+            let dayObj = {
+              date: item.date,
+              description: item.day.condition.text,
+              icon: item.day.condition.icon,
+              minTemp: item.day.mintemp_c,
+              maxTemp: item.day.maxtemp_c,
+              maxWind: item.day.maxwind_kph,
+              sunset: item.astro.sunset,
+              sunrise: item.astro.sunrise,
+            };
+
+            return dayObj;
+          }),
+        };
+
+        console.log(data);
+
+        setData(data);
         setPlace(place);
       })
       .catch((error) => {

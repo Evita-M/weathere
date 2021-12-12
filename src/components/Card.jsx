@@ -3,7 +3,7 @@ import { getDateFormatted, makeFirstCapital } from "../tools/helpers";
 import { Air, Thermostat } from "@mui/icons-material";
 
 const Card = ({ data, place }) => {
-  const { temperature, wind, description, forecast } = data;
+  const { temperature, wind, description } = data;
   // const { dayStr, dayNbr, month } = getDateFormatted();
   //   console.log(getDateFormatted());
   //   console.log(getDateFormatted(new Date(), 3));
@@ -36,7 +36,7 @@ const Card = ({ data, place }) => {
         </div>
 
         <div className="card__list">
-          {forecast.map((item, index) => {
+          {/* {forecast.map((item, index) => {
             let df = getDateFormatted(new Date(), item.day);
 
             return (
@@ -61,7 +61,7 @@ const Card = ({ data, place }) => {
                 </div>
               </div>
             );
-          })}
+          })} */}
         </div>
       </article>
     </>
