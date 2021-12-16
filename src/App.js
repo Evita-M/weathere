@@ -2,6 +2,7 @@ import Weather from "./components/Weather";
 import Spinner from "./components/Spinner";
 import axios from "axios";
 import Animator from "./components/Animator";
+
 import { useState } from "react";
 import { getDateFormatted, makeFirstCapital } from "./tools/helpers";
 import "./App.css";

@@ -45,9 +45,9 @@ h1 {
   }
 }
 h2 {
-  font-size: 35px;
+  font-size: 30px;
   @media (min-width: 750px) {
-    font-size: 50px;
+    font-size: 40px;
   }
 }
 h3 {
@@ -57,9 +57,9 @@ h3 {
   }
 }
 h4 {
-  font-size: 16px;
+  font-size: 18px;
   @media (min-width: 750px) {
-    font-size: 40px;
+    font-size: 28px;
   }
 }
 h5,
@@ -99,4 +99,9 @@ button {
   &:hover {
     background-color: lighten($colorViolet, 10%);
   }
+}
+
+hr {
+  margin: 20px 10px;
+  border: 1px solid rgba($colorWhite, 0.5);
 }
