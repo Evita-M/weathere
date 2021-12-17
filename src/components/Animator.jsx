@@ -1,7 +1,7 @@
 import Particles from "react-tsparticles";
 import { memo } from "react";
 
-const Animator = memo(() => {
+const Animator = memo((props) => {
   const particlesInit = (main) => {
     console.log(main);
 
@@ -447,17 +447,46 @@ const Animator = memo(() => {
         },
       },
       shape: {
-        options: {},
-        type: "circle",
+        options: {
+          character: {
+            fill: false,
+            font: "Verdana",
+            style: "",
+            value: "*",
+            weight: "400",
+          },
+          char: {
+            fill: false,
+            font: "Verdana",
+            style: "",
+            value: "*",
+            weight: "400",
+          },
+          polygon: {
+            sides: 5,
+          },
+          star: {
+            sides: 5,
+          },
+          image: [],
+          images: [
+            {
+              src: "",
+              width: 32,
+              height: 32,
+            },
+          ],
+        },
+        type: "image",
       },
       size: {
         random: {
           enable: true,
-          minimumValue: 1,
+          minimumValue: 10,
         },
         value: {
-          min: 1,
-          max: 6,
+          min: 15,
+          max: 25,
         },
         animation: {
           count: 0,

@@ -5,7 +5,7 @@ const Weather = ({ data, place, hasError }) => {
   return (
     <>
       {(data && data.temperature === "") || hasError ? (
-        <p>
+        <p className="error-text">
           Something went wrong!<br></br> Try it again.
         </p>
       ) : (

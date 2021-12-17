@@ -28,8 +28,10 @@ const Forecast = ({ data, place }) => {
           <h2 className="forecast__title">{makeFirstCapital(data.location)}</h2>
           <h3 className="forecast__country">{data.country}</h3>
           <div className="forecast__description">
-            <img src={data.icon} alt={data.description}></img>
-            <h4>{data.description}</h4>
+            <span>
+              <img src={data.icon} alt={data.description}></img>
+            </span>
+            <h4 className="u-mb-0">{data.description}</h4>
           </div>
           <div className="forecast__wrapper">
             <InfoItem
@@ -122,12 +124,6 @@ const Forecast = ({ data, place }) => {
                     value={`${item.minTemp} / ${item.maxTemp}`}
                     unit="°C"
                   />
-                  {/* <InfoItem
-                    title="Max Temperature"
-                    icon={<Thermostat sx={{ fontSize: iconSize }} />}
-                    value={item.maxTemp}
-                    unit="°C"
-                  /> */}
                   <InfoItem
                     title="Sunrise"
                     icon={<WbTwilight sx={{ fontSize: iconSize }} />}
@@ -139,20 +135,6 @@ const Forecast = ({ data, place }) => {
                     value={item.sunset}
                   />
                 </div>
-                {/* <div className="card__forecast">
-                  <p className="card__info">
-                    <span className="card__icon">
-                      <Thermostat sx={{ fontSize: 18 }} />
-                    </span>
-                    <span>{item.temperature}</span>
-                  </p>
-                  <p className="card__info">
-                    <span className="card__icon">
-                      <Air sx={{ fontSize: 18 }} />
-                    </span>
-                    <span>{item.wind}</span>
-                  </p>
-                </div> */}
               </div>
             );
           })}

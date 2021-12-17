@@ -1,6 +1,5 @@
 .container {
   padding: 0 10px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,23 +9,35 @@
   margin: 10px 0;
   width: 100%;
   max-width: 1050px;
-  padding: 60px 10px 10px;
-  @include glass-effect($blur: 7, $opacity: 0.15, $saturate: 110);
+  padding: 40px 10px 10px;
+  @include glass-effect($blur: 7, $opacity: 0.2, $saturate: 110);
+  transition: background-color 0.3s;
+
   &__intro {
     margin-bottom: 25px;
     line-height: 1.8;
   }
   &__search {
     color: $colorBlack;
-    // display: inline-flex;
-    // border-radius: 5px;
-    // overflow: hidden;
-    // flex-wrap: wrap;
-    // justify-content: center;
   }
   &__main {
     padding-top: 25px;
   }
+
+  &.is-dark {
+    button {
+      background-color: #161e54;
+    }
+
+    input:focus {
+      border-color: #161e54;
+    }
+    background-color: rgba(#161e54, 0.4);
+  }
+}
+
+.error-text {
+  margin-bottom: 20px;
 }
 
 .spinner {
@@ -34,15 +45,29 @@
 }
 
 .forecast {
+  $s: ".forecast";
   @include glass-effect($blur: 0, $opacity: 0, $saturate: 0);
   padding: 20px 10px 10px;
   &__title {
     margin-bottom: 15px;
     text-transform: uppercase;
   }
-  &__description {
-    margin-bottom: 20px;
+  &__main {
+    #{$s}__description {
+      margin: 0 0 -15px -15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      line-height: 15px;
+      & > h4,
+      span {
+        margin: 0 0 15px 15px;
+      }
+    }
   }
+
   &__country {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -50,14 +75,9 @@
     color: rgba($colorWhite, 0.7);
   }
   &__wrapper {
-    // margin: 0 auto;
-    // width: max-content;
     display: grid;
 
     gap: 10px;
-  }
-  &__list {
-    // display: flex;
   }
   &__item {
     @include glass-effect($blur: 0, $opacity: 0.1, $saturate: 0);
@@ -90,7 +110,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  //   @include glass-effect($blur: 0, $opacity: 0.1, $saturate: 0);
   padding: 10px;
   font-size: 18px;
   &__wrapper {
@@ -125,38 +144,110 @@
   }
 }
 
-//   &__forecast {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     gap: 25px;
-//     list-style: none;
-//     li {
-//       flex: 0 0 auto;
-//     }
-//     &--lg {
-//       display: block;
-//       .card__info {
-//         font-size: 25px;
-//         margin-bottom: 10px;
-//         svg {
-//           margin-right: 15px;
-//         }
-//       }
-//     }
-//   }
-//   &__info {
-//     display: flex;
-//     align-items: center;
-//     // font-weight: 600;
-//     svg {
-//       position: relative;
-//       top: 3px;
-//       flex: 0 0 auto;
-//       margin-right: 10px;
-//     }
-//   }
+$btn-width: 50px;
+$btn-height: 25px;
+.toggle-switch {
+  position: relative;
+  margin: 0 auto 20px;
+  width: $btn-width;
+  height: $btn-height;
+  background-image: linear-gradient(
+    90deg,
+    #161e54 50%,
+    rgba($colorWhite, 0.5) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 100%;
+  box-shadow: 0 0 5px 1px rgba($colorBlack, 0.2) inset;
+  padding: 0;
+  border-radius: $btn-height/2;
+  display: flex;
+  align-items: center;
+  transition: 0.7s;
+
+  input {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    z-index: 999;
+  }
+
+  .round-button {
+    position: relative;
+    transform: translateX(-5%);
+    height: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    transition: 0.4s;
+    transition-timing-function: ease-in-out;
+
+    .button-body {
+      position: absolute;
+      z-index: 0;
+      height: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-image: radial-gradient(#ffcc33 50%, #fc9601);
+      box-shadow: 0 0 20px rgba($colorBlack, 0.3);
+    }
+
+    @for $i from 1 through 3 {
+      div {
+        &:nth-child(#{$i}) {
+          height: 100%;
+          aspect-ratio: 1;
+          position: absolute;
+          z-index: 1;
+          background-image: radial-gradient(transparent 60%, #fc9601);
+          transform: rotateZ($i * 30deg);
+          transition: 0.4s;
+        }
+      }
+    }
+  }
+
+  input:checked ~ .round-button {
+    transform: translateX(calc(#{$btn-width} - 95%));
+
+    .button-body {
+      background-image: radial-gradient(#f4f4f4, #cacaca);
+      box-shadow: 0 0 20px rgba($colorBlack, 0.3);
+    }
+
+    @for $i from 1 through 3 {
+      div {
+        &:nth-child(#{$i}) {
+          height: $i * 5%;
+          aspect-ratio: 1;
+          transform: rotateZ(90deg)
+            translate($i%2 * (-0.4em), $i * (0.15em)) !important;
+          border-radius: 50%;
+          background-color: #cacaca;
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 548px) {
+  .app {
+    &__search {
+      display: flex;
+      justify-content: center;
+      button {
+        border-radius: 0 5px 5px 0;
+        max-width: 250px;
+      }
+      input {
+        border-radius: 5px 0 0 5px;
+        min-width: 300px;
+      }
+    }
+  }
   .forecast {
     &__wrapper {
       grid-template-columns: repeat(4, 1fr);
@@ -179,7 +270,7 @@
 
 @media (min-width: 750px) {
   .app {
-    padding: 60px 15px 15px;
+    padding: 40px 15px 15px;
   }
   .card {
     &__list {
