@@ -1,15 +1,19 @@
+//Fonts
 $fontFamily: "Dosis", sans-serif;
 $fontSize: 16px;
-$fontSizeLg: 20px;
-$colorViolet: hsl(291.37, 100%, 37.75%);
-$colorPink: hsl(335.13, 100%, 49.06%);
-$colorOrange: hsl(13.63, 98.57%, 53.31%);
-$colorBlue: hsl(237.91, 100%, 45.1%);
+$fontSizeLg: 22px;
+$t: 0.3s;
+
+//Colors
+$colorViolet: hsl(291, 100%, 38%);
+$colorPink: hsl(335, 100%, 49%);
+$colorOrange: hsl(14, 100%, 53%);
+$colorBlue: hsl(238, 100%, 45%);
+$colorDarkBlue: hsl(232, 58%, 21%);
 $colorWhite: #ffffff;
 $colorBlack: #000000;
-$colorGreyLight: rgb(255, 228, 242);
 $gradient: linear-gradient(
-  152deg,
+  150deg,
   hsl(20.88, 100%, 49.02%) 0%,
   hsl(19.08, 96.79%, 50.2%) 8%,
   hsl(13.63, 98.57%, 53.31%) 15.1%,
@@ -27,3 +31,7 @@ $gradient: linear-gradient(
   hsl(252.56, 100%, 44.58%) 90.4%,
   hsl(237.91, 100%, 45.1%) 100%
 );
+
+$smUp: 512px;
+$mdUp: 768px;
+$lgUp: 1024px;

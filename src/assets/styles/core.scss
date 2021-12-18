@@ -1,0 +1,138 @@
+input {
+  padding: 9px 16px;
+  font-size: $fontSize;
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border: 3px solid transparent;
+  &:focus {
+    border-color: $colorViolet;
+  }
+}
+
+button {
+  padding: 12px 25px;
+  color: $colorWhite;
+  border-radius: 5px;
+  background-color: $colorViolet;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  font-size: $fontSize;
+  width: 100%;
+  transition: background-color $t;
+  &:hover {
+    background-color: lighten($colorViolet, 10%);
+  }
+}
+
+//Toggle Theme Button
+$btn-width: 50px;
+$btn-height: 25px;
+.toggle-switch {
+  position: relative;
+  margin: 0 auto 30px;
+  width: $btn-width;
+  height: $btn-height;
+  background-image: linear-gradient(
+    90deg,
+    #161e54 50%,
+    rgba($colorWhite, 0.5) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 100%;
+  box-shadow: 0 0 5px 1px rgba($colorBlack, 0.2) inset;
+  padding: 0;
+  border-radius: $btn-height/2;
+  display: flex;
+  align-items: center;
+  transition: 0.7s;
+
+  input {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    z-index: 999;
+  }
+
+  .round-button {
+    position: relative;
+    transform: translateX(-5%);
+    height: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    transition: $t;
+    transition-timing-function: ease-in-out;
+
+    .button-body {
+      position: absolute;
+      z-index: 0;
+      height: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-image: radial-gradient(#ffcc33 50%, #fc9601);
+      box-shadow: 0 0 20px rgba($colorBlack, 0.3);
+    }
+
+    @for $i from 1 through 3 {
+      div {
+        &:nth-child(#{$i}) {
+          height: 100%;
+          aspect-ratio: 1;
+          position: absolute;
+          z-index: 1;
+          background-image: radial-gradient(transparent 60%, #fc9601);
+          transform: rotateZ($i * 30deg);
+          transition: $t;
+        }
+      }
+    }
+  }
+
+  input:checked ~ .round-button {
+    transform: translateX(calc(#{$btn-width} - 95%));
+
+    .button-body {
+      background-image: radial-gradient(#f4f4f4, #cacaca);
+      box-shadow: 0 0 20px rgba($colorBlack, 0.3);
+    }
+
+    @for $i from 1 through 3 {
+      div {
+        &:nth-child(#{$i}) {
+          height: $i * 5%;
+          aspect-ratio: 1;
+          transform: rotateZ(90deg)
+            translate($i%2 * (-0.4em), $i * (0.15em)) !important;
+          border-radius: 50%;
+          background-color: #cacaca;
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+  }
+}
+
+//Dark Theme
+.app.is-dark {
+  background-color: rgba($colorDarkBlue, 0.4);
+  button {
+    background-color: $colorDarkBlue;
+    &:hover {
+      background-color: lighten($colorDarkBlue, 15%);
+    }
+  }
+  input:focus {
+    border-color: $colorDarkBlue;
+  }
+  .app__title {
+    color: $colorWhite;
+  }
+}

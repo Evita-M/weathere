@@ -1,7 +1,7 @@
 import React from "react";
 import Forecast from "./Forecast";
 
-const Weather = ({ data, place, hasError }) => {
+const Weather = ({ data, infoItems, hasError }) => {
   return (
     <>
       {(data && data.temperature === "") || hasError ? (
@@ -9,7 +9,7 @@ const Weather = ({ data, place, hasError }) => {
           Something went wrong!<br></br> Try it again.
         </p>
       ) : (
-        data && <Forecast data={data} place={place} />
+        data && <Forecast data={data} infoItems={infoItems} />
       )}
     </>
   );

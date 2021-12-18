@@ -1,4 +1,4 @@
-import Particles from "react-tsparticles";
+// import Particles from "react-tsparticles";
 import { memo } from "react";
 
 const Animator = memo((props) => {
@@ -552,12 +552,12 @@ const Animator = memo((props) => {
 
   return (
     <div>
-      <Particles
+      {/* <Particles
         id="tsparticles"
         init={particlesInit}
         loaded={particlesLoaded}
         options={settings}
-      />
+      /> */}
     </div>
   );
 });

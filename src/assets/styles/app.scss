@@ -1,6 +1,8 @@
 @import "variables.scss";
+@import "typography.scss";
 @import "mixins.scss";
 @import "utilities.scss";
+@import "core.scss";
 @import "index.scss";
 
 *,
@@ -28,81 +30,9 @@ body {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0 0 0.5em;
-}
-
-h1 {
-  font-size: 45px;
-  @media (min-width: 750px) {
-    letter-spacing: 5px;
-    font-size: 65px;
-  }
-}
-h2 {
-  font-size: 30px;
-  @media (min-width: 750px) {
-    font-size: 40px;
-  }
-}
-h3 {
-  font-size: 20px;
-  @media (min-width: 750px) {
-    font-size: 30px;
-  }
-}
-h4 {
-  font-size: 18px;
-  @media (min-width: 750px) {
-    font-size: 28px;
-  }
-}
-h5,
-h6 {
-  font-size: 30px;
-}
-
-input {
-  padding: 10px 16px;
-  font-size: $fontSize;
-  outline: none;
-  width: 100%;
-  border-radius: 5px;
-  border: none;
-  //   min-width: 230px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  border: 2px solid transparent;
-  &:focus {
-    border-color: $colorViolet;
-  }
-}
-
-button {
-  padding: 12px 25px;
-  color: $colorWhite;
-
-  border-radius: 5px;
-  background-color: $colorViolet;
-  font-weight: bold;
-  letter-spacing: 1px;
-  border: none;
-  cursor: pointer;
-  font-size: $fontSize;
-  width: 100%;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: lighten($colorViolet, 10%);
-  }
-}
-
-hr {
-  margin: 20px 10px;
-  border: 1px solid rgba($colorWhite, 0.3);
+.container {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

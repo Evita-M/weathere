@@ -1,3 +1,12 @@
+//Example Use Cases
+// const { dayStr, dayNbr, month } = getDateFormatted();
+//   console.log(getDateFormatted());
+//   console.log(getDateFormatted(new Date(), 3));
+//   console.log(getDateFormatted(null, 3));
+//   console.log(getDateFormatted(new Date(2021, 10, 24), 5));
+//   console.log(getDateFormatted(new Date(2021, 10, 24)));
+
+/* eslint-disable no-extend-native */
 Date.prototype.addDays = function (days) {
   const date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
