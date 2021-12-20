@@ -110,7 +110,7 @@ $btn-height: 25px;
           height: $i * 5%;
           aspect-ratio: 1;
           transform: rotateZ(90deg)
-            translate($i%2 * (-0.4em), $i * (0.15em)) !important;
+            translate($i%2 * (-0.4em), $i * (0.05em)) !important;
           border-radius: 50%;
           background-color: #cacaca;
           transform: rotateZ(180deg);
