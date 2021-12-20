@@ -8,7 +8,6 @@
   &__title {
     color: $colorWhite;
     position: relative;
-    // text-shadow: 5px 0 2px $colorViolet;
     display: inline-block;
     letter-spacing: 3px;
     span {
@@ -109,10 +108,7 @@
   flex-direction: column;
   padding: 10px;
   font-size: 20px;
-  transition: transform $t;
-  &:hover {
-    transform: scale(1.03);
-  }
+  transition: font-size $t;
   &__wrapper {
     display: flex;
     align-items: center;
@@ -136,7 +132,9 @@
     @include glass-effect($blur: 0, $opacity: 0.1, $saturate: 0);
     font-size: 20px;
     padding: 15px 10px;
-
+    &:hover {
+      font-size: 22px;
+    }
     #{$s}__icon {
       margin-right: 15px;
     }
@@ -205,11 +203,6 @@
       display: grid;
       gap: 20px;
       grid-template-columns: repeat(3, 1fr);
-    }
-    &__item {
-      &:hover {
-        transform: scale(1.03);
-      }
     }
   }
 }

@@ -225,11 +225,14 @@ function App() {
 
           <form className="app__search">
             <p>
+              <label for="placeSearch"></label>
               <input
-                type="text"
+                type="search"
+                name="placeSearch"
+                id="placeSearch"
                 value={makeFirstCapital(inputValue)}
                 onChange={handleOnInputChange}
-                placeholder="ex. Brno"
+                placeholder="for example Brno"
               />
             </p>
             <p>
